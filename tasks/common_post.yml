@@ -1,0 +1,8 @@
+---
+# Ensure {{ sap_hana_cockpit_tmp_directory }} directory is removed from the target host
+- name: Ensure {{ sap_hana_cockpit_tmp_directory }} directory does not exist
+  file:
+    path: "{{ sap_hana_cockpit_tmp_directory }}"
+    state: absent
+    mode: '0755'
+  when: sap_hana_cockpit_clean_tmp_directory

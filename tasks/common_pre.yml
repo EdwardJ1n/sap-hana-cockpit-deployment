@@ -1,0 +1,14 @@
+---
+
+# Ensure {{ sap_hostagent_agent_tmp_directory }} directory exists on the target host
+- name: Ensure {{ sap_hana_cockpit_tmp_directory }} directory exists
+  file:
+    path: "{{ sap_hana_cockpit_tmp_directory }}"
+    state: directory
+    mode: '0755'
+
+# Install compat-openssl10
+- name: Ensure compat-openssl10 installed
+  yum: 
+    name: compat-openssl10
+    state: latest

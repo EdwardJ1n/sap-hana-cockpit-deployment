@@ -1,0 +1,43 @@
+[General]
+
+# Components ( Valid values: all | client | es | ets | lcapps | server | smartda | streaming | rdsync | xs | studio | afl | sca | sop | eml | rme | rtl | trp | vch )
+components=server, xs
+
+[Server]
+
+# SAP HANA System ID
+sid=H4C
+
+# Database User Name (SYSTEM)
+system_user=SYSTEM
+
+# Database User (SYSTEM) Password
+system_user_password={{ sap_hana_deployment_common_master_password }}
+
+# System Administrator Password
+password={{ sap_hana_deployment_common_master_password }}
+
+# Master Password
+master_password={{ sap_hana_deployment_common_master_password }}
+
+# Imports delivery units
+hdbinst_server_import_content=n
+
+[Action]
+
+# Action ( Default: exit; Valid values: install | update )
+action=install
+
+[XS_Advanced]
+
+# Organization Name For Space "SAP" ( Default: orgname )
+org_name=HANACockpit
+
+# XS Advanced Admin User ( Default: COCKPIT_ADMIN )
+org_manager_user=COCKPIT_ADMIN
+
+# XS Advanced Admin User Password
+org_manager_password={{ sap_hana_deployment_xs_org_password }}
+
+# XS Advanced Components
+xs_components=all

@@ -1,0 +1,16 @@
+---
+# Global Default variables
+# Adapt to your default settings
+
+# Installation type: SAR
+sap_hana_cockpit_installation_type: "sar"
+sap_hana_cockpit_sapcar_file_name: "SAPCAR"
+
+# Temporary directory for SAPHANACOCKPIT files
+sap_hana_cockpit_tmp_directory: "/tmp/saphanacockpit"
+
+# Remove the temporary directory after the installation has been done
+sap_hana_cockpit_clean_tmp_directory: false
+
+# This role must be run as ROOT user
+ansible_become: true

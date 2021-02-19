@@ -1,0 +1,42 @@
+---
+
+- name: Copy SAR based SAPHANACOCKPIT to the target host
+  copy:
+    src: "{{ sap_hana_cockpit_sar_local_path }}/{{ sap_hana_cockpit_sar_file_name }}"
+    dest: "{{ sap_hana_cockpit_tmp_directory }}/{{ sap_hana_cockpit_sar_file_name }}"
+    remote_src: yes
+
+- name: Copy SAPCAR tool to the target host
+  copy:
+    src: "{{ sap_hana_cockpit_sapcar_local_path }}/{{ sap_hana_cockpit_sapcar_file_name }}"
+    dest: "{{ sap_hana_cockpit_tmp_directory }}/{{ sap_hana_cockpit_sapcar_file_name }}"
+    mode: '0755'
+    remote_src: yes
+
+- name: Extract the SAPHANACOCKPIT archive using SAPCAR
+  command: >-
+    {{ sap_hana_cockpit_tmp_directory }}/{{ sap_hana_cockpit_sapcar_file_name }} \
+    -xvf {{ sap_hana_cockpit_tmp_directory }}/{{ sap_hana_cockpit_sar_file_name }} -manifest SIGNATURE.SMF
+  register: extractcockpit
+  args:
+    chdir: "{{ sap_hana_cockpit_tmp_directory }}"
+  changed_when: "'SAPCAR: processing archive' in extractcockpit.stdout"
+
+- name: create temporary directory to store the processed template
+  tempfile:
+    state: directory
+    suffix: hanacockpitconfig
+  register: tmpdir
+
+- name: "Process SAPHANACOCKPIT Configfile Template"
+  template:
+    src: "{{ role_path }}/templates/configfile.j2"
+    dest: "{{ tmpdir.path }}/configfile.cfg"
+  register: cftemplate
+
+- name: Install SAPHANACOCKPIT
+  command: "./hdblcm.sh --configfile={{ tmpdir.path }}/configfile.cfg -b"
+  register: installcockpit
+  args:
+    chdir: "{{ sap_hana_cockpit_tmp_directory }}"
+  changed_when: "'Install service' in installcockpit.stdout"

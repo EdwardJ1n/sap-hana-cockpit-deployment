@@ -1,0 +1,11 @@
+---
+
+# Execute common pre installation tasks
+- import_tasks: common_pre.yml
+
+# Deploy SAPHOSTAGENT using SAR file
+- import_tasks: deploy_sar.yml
+  when: sap_hana_cockpit_installation_type == "sar"
+
+# Execute common post installation tasks
+- import_tasks: common_post.yml
