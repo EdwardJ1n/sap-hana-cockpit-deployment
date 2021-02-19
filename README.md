@@ -1,7 +1,7 @@
-Role Name
+sap-hana-cockpit
 =========
 
-A brief description of the role goes here.
+SAP HANA cockpit provides a single point of access to a range of tools for administration and detailed monitoring of multiple, individual and tenant SAP HANA databases, and also integrates the SQL development capabilities required by administrators. This role is to install SAP HANA Cockpit on RHEL 8.x systems. 
 
 Requirements
 ------------
@@ -16,10 +16,12 @@ To install SAP software on Red Hat Enterprise Linux you need some additional pac
 
 * RHEL for SAP Solutions (premium, standard, developer Edition)
 * RHEL for Business Partner NFRs
+
 Click here to achieve a personal developer edition of RHEL for SAP Solutions. Please register as a developer and download the developer edition.
 
 * Registration Link : Here you can either register a new personal account or link it to an already existing personal Red Hat Network account.
 * Download Link: Here you can download the Installation DVD for RHEL with your previously registered account
+
 NOTE: This is a regular RHEL installation DVD as RHEL for SAP Solutions is no additional product but only a special bundling. The subscription grants you access to the additional packages through our content delivery network(CDN) after installation.
 
 It is also important that your disks are setup according to the SAP storage requirements for SAP HANA. This BLOG is also quite helpful when sizing HANA systems.
@@ -29,9 +31,13 @@ Role Variables
 
 variables
 sap_hana_cockpit_sar_local_path
+
 sap_hana_cockpit_sar_file_name
+
 sap_hana_cockpit_clean_tmp_directory
+
 sap_hana_deployment_xs_org_password
+
 sap_hana_cockpit_sapcar_local_path
 
 Dependencies
