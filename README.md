@@ -29,7 +29,6 @@ It is also important that your disks are setup according to the SAP storage requ
 Role Variables
 --------------
 
-variables
 sap_hana_cockpit_sar_local_path
 
 sap_hana_cockpit_sar_file_name
@@ -60,9 +59,13 @@ Example Inventory
 ----------------
 
 sap_hana_cockpit_sar_local_path: "{{ sap_hana_mediacheck_mountpoint }}"
+
 sap_hana_cockpit_sar_file_name: "SAPHANACOCKPIT00P_12-70002299.SAR"
+
 sap_hana_cockpit_clean_tmp_directory: true
+
 sap_hana_deployment_xs_org_password: "MyPassw0rd!"
+
 sap_hana_cockpit_sapcar_local_path: "/hana/shared/{{sap_hana_ha_pacemaker_hana_sid}}/global/hdb/saphostagent_setup"
 
 License
